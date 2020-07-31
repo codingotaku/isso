@@ -23,7 +23,7 @@
     font-size: 0.8em;
     vertical-align: bottom;
 }
-#isso-thread .textarea {
+#isso-thread .textarea-isso {
     min-height: 58px;
     outline: 0;
 }
@@ -93,7 +93,7 @@
     font-weight: bold;
     color: #555;
 }
-.isso-comment > div.text-wrapper > .textarea-wrapper .textarea,
+.isso-comment > div.text-wrapper > .textarea-wrapper .textarea-isso,
 .isso-comment > div.text-wrapper > .textarea-wrapper .preview {
     margin-top: 0.2em;
 }
@@ -112,7 +112,7 @@
     font-size: 130%;
     font-weight: bold;
 }
-.isso-comment > div.text-wrapper > div.textarea-wrapper .textarea,
+.isso-comment > div.text-wrapper > div.textarea-wrapper .textarea-isso,
 .isso-comment > div.text-wrapper > div.textarea-wrapper .preview {
     width: 100%;
     border: 1px solid #f0f0f0;
@@ -169,7 +169,7 @@
 .isso-postbox > .form-wrapper > .auth-section .post-action {
     display: block;
 }
-.isso-postbox > .form-wrapper .textarea,
+.isso-postbox > .form-wrapper .textarea-isso,
 .isso-postbox > .form-wrapper .preview {
     margin: 0 0 .3em;
     padding: .4em .8em;
@@ -188,7 +188,7 @@
     font-size: 0.90em;
     padding-top: .3em;
 }
-#isso-thread .textarea:focus,
+#isso-thread .textarea-isso:focus,
 #isso-thread input:focus {
     border-color: rgba(0, 0, 0, 0.8);
 }
@@ -231,7 +231,7 @@
 .isso-postbox > .form-wrapper .preview,
 .isso-postbox > .form-wrapper input[name="edit"],
 .isso-postbox.preview-mode > .form-wrapper input[name="preview"],
-.isso-postbox.preview-mode > .form-wrapper .textarea {
+.isso-postbox.preview-mode > .form-wrapper .textarea-isso {
     display: none;
 }
 .isso-postbox.preview-mode > .form-wrapper .preview {

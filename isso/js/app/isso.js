@@ -19,10 +19,10 @@ define(["app/dom", "app/utils", "app/config", "app/api", "app/jade", "app/i18n",
         el.onsuccess = function() {};
 
         el.validate = function() {
-            if (utils.text($(".textarea", this).innerHTML).length < 3 ||
-                $(".textarea", this).classList.contains("placeholder"))
+            if (utils.text($(".textarea-isso", this).innerHTML).length < 3 ||
+                $(".textarea-isso", this).classList.contains("placeholder"))
             {
-                $(".textarea", this).focus();
+                $(".textarea-isso", this).focus();
                 return false;
             }
             if (config["require-email"] &&
@@ -65,7 +65,7 @@ define(["app/dom", "app/utils", "app/config", "app/api", "app/jade", "app/i18n",
 
         // preview function
         $("[name='preview']", el).on("click", function() {
-            api.preview(utils.text($(".textarea", el).innerHTML)).then(
+            api.preview(utils.text($(".textarea-isso", el).innerHTML)).then(
                 function(html) {
                     $(".preview .text", el).innerHTML = html;
                     el.classList.add('preview-mode');
@@ -98,13 +98,13 @@ define(["app/dom", "app/utils", "app/config", "app/api", "app/jade", "app/i18n",
 
             api.create($("#isso-thread").getAttribute("data-isso-id"), {
                 author: author, email: email, website: website,
-                text: utils.text($(".textarea", el).innerHTML),
+                text: utils.text($(".textarea-isso", el).innerHTML),
                 parent: parent || null,
                 title: $("#isso-thread").getAttribute("data-title") || null,
                 notification: $("[name=notification]", el).checked() ? 1 : 0,
             }).then(function(comment) {
-                $(".textarea", el).innerHTML = "";
-                $(".textarea", el).blur();
+                $(".textarea-isso", el).innerHTML = "";
+                $(".textarea-isso", el).blur();
                 insert(comment, true);
 
                 if (parent !== null) {
@@ -113,7 +113,7 @@ define(["app/dom", "app/utils", "app/config", "app/api", "app/jade", "app/i18n",
             });
         });
 
-        lib.editorify($(".textarea", el));
+        lib.editorify($(".textarea-isso", el));
 
         return el;
     };
@@ -199,7 +199,7 @@ define(["app/dom", "app/utils", "app/config", "app/api", "app/jade", "app/i18n",
             function(toggler) {
                 form = footer.insertAfter(new Postbox(comment.parent === null ? comment.id : comment.parent));
                 form.onsuccess = function() { toggler.next(); };
-                $(".textarea", form).focus();
+                $(".textarea-isso", form).focus();
                 $("a.reply", footer).textContent = i18n.translate("comment-close");
             },
             function() {
@@ -269,7 +269,7 @@ define(["app/dom", "app/utils", "app/config", "app/api", "app/jade", "app/i18n",
 
                 toggler.canceled = false;
                 api.view(comment.id, 1).then(function(rv) {
-                    var textarea = lib.editorify($.new("div.textarea"));
+                    var textarea = lib.editorify($.new("div.textarea-isso"));
 
                     textarea.innerHTML = utils.detext(rv.text);
                     textarea.focus();
@@ -286,7 +286,7 @@ define(["app/dom", "app/utils", "app/config", "app/api", "app/jade", "app/i18n",
                 }
             },
             function(toggler) {
-                var textarea = $(".textarea", text);
+                var textarea = $(".textarea-isso", text);
                 var avatar = config["avatar"] || config["gravatar"] ? $(".avatar", el, false)[0] : null;
 
                 if (! toggler.canceled && textarea !== null) {
@@ -316,9 +316,9 @@ define(["app/dom", "app/utils", "app/config", "app/api", "app/jade", "app/i18n",
             }
         );
 
-        $("a.delete", footer).toggle("click",
+        $("a.delete-isso", footer).toggle("click",
             function(toggler) {
-                var del = $("a.delete", footer);
+                var del = $("a.delete-isso", footer);
                 var state = ! toggler.state;
 
                 del.textContent = i18n.translate("comment-confirm");
@@ -329,7 +329,7 @@ define(["app/dom", "app/utils", "app/config", "app/api", "app/jade", "app/i18n",
                 });
             },
             function() {
-                var del = $("a.delete", footer);
+                var del = $("a.delete-isso", footer);
                 api.remove(comment.id).then(function(rv) {
                     if (rv) {
                         el.remove();
@@ -337,7 +337,7 @@ define(["app/dom", "app/utils", "app/config", "app/api", "app/jade", "app/i18n",
                         $("span.note", header).textContent = i18n.translate("comment-deleted");
                         text.innerHTML = "<p>&nbsp;</p>";
                         $("a.edit", footer).remove();
-                        $("a.delete", footer).remove();
+                        $("a.delete-isso", footer).remove();
                     }
                     del.textContent = i18n.translate("comment-delete");
                 });
@@ -356,7 +356,7 @@ define(["app/dom", "app/utils", "app/config", "app/api", "app/jade", "app/i18n",
         };
 
         clear("a.edit");
-        clear("a.delete");
+        clear("a.delete-isso");
 
         // show direct reply to own comment when cookie is max aged
         var show = function(el) {
