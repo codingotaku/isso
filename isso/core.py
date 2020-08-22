@@ -12,7 +12,7 @@ try:
 except ImportError:
     uwsgi = None
 
-from isso.compat import PY2K
+import _thread as thread
 
 if PY2K:
     import thread
