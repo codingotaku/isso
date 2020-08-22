@@ -14,11 +14,6 @@ except ImportError:
 
 import _thread as thread
 
-if PY2K:
-    import thread
-else:
-    import _thread as thread
-
 from flask_caching.backends.nullcache import NullCache
 from flask_caching.backends.simplecache import SimpleCache
 
